@@ -26,5 +26,10 @@ namespace BookNet.Controllers
 
             return View();
         }
+
+        public ActionResult Dor()
+        {
+            return Json(new { text = "sdfeswfgwswes" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

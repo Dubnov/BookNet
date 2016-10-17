@@ -33,20 +33,18 @@
 <div id="map"></div>
 
 <script>
+    function initMap() {
+        var centerCord = { lat: 31.969738, lng: 34.7727872 };
 
-      function initMap() {
-          var uluru = { lat: 31.969738, lng: 34.7727872 };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
+        var map = new google.maps.Map($('#map')[0], {
+            zoom: 15,
+            center: centerCord
         });
+
         var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+            position: centerCord,
+            map: map
         });
-      }
-
+    }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBqFys-8rdAyBvJ5yZI2KFZfcbVzJU8Q&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBqFys-8rdAyBvJ5yZI2KFZfcbVzJU8Q&callback=initMap"></script>

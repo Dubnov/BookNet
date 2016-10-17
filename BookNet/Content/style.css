@@ -1,1 +1,39 @@
-﻿
+﻿#aboutVideo {
+    display:block; 
+    margin:auto;
+    margin-bottom: 30px;
+}
+
+#map {
+    width: 400px;
+    height: 400px;
+    border-radius: 30px;
+}
+
+@font-face {
+    font-family: bookStoreFont;
+    src: url(../fonts/sansation_light.woff);
+}
+
+@font-face {
+    font-family: bookStoreFont;
+    src: url(../fonts/sansation_bold.woff);
+    font-weight: bold;
+}
+
+.address {
+    font-family: bookStoreFont;
+}
+
+.addressTitle {
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: 2px 2px rgb(146, 146, 146);
+}
+
+#aboutContent {
+    column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    margin-bottom: 30px;
+}

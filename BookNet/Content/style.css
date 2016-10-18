@@ -1,11 +1,30 @@
-﻿body {
+﻿html{
+    height: 100%;
+    
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    position: relative;
+    min-height: 100%;
+}
+
+footer{
+    display: block;
+    position: absolute;
+    color: #efefef;
+    background-color: black;
+    padding: 15px;
+    width: 100%;    
+    overflow: hidden;    
+    bottom: 0;
+    left: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding: 50px 15px 20px 15px;       
+    padding: 50px 15px 20px 15px;
+    margin-bottom: 50px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -64,6 +83,11 @@ textarea {
     -moz-column-count: 2;
     -webkit-column-count: 2;
     margin-bottom: 30px;
+}
+
+.center{
+    text-align: center;
+}
 }
 
 #customersMap {

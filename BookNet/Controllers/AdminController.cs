@@ -5,17 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace BookNet.Controllers
-{
+{    
     public class AdminController : Controller
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-
-            base.OnActionExecuting(filterContext);
-        }
-
-
-        // GET: Admin
+        [Authorization(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
@@ -23,7 +16,7 @@ namespace BookNet.Controllers
 
         public ActionResult Login()
         {
-            if (Request.Cookies["admin"] != null && Request.Cookies["admin"].ToString() == "admin")
+            if (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString())
             {
                 return RedirectToAction("Index");
             }
@@ -34,17 +27,16 @@ namespace BookNet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection form)
-        {                       
-            
+        {
             if (ModelState.IsValid)
             {
                 string username = form["Username"] ?? string.Empty;
                 string password = form["Password"] ?? string.Empty;
 
                 if (username == Properties.Settings.Default.AdminUser &&
-                    password == Properties.Settings.Default.AdminPas)s
+                    password == Properties.Settings.Default.AdminPass)
                 {
-                    Request.Cookies.Add(new HttpCookie("admin", "admin"));
+                    HttpContext.Session.Add("userAuth", Roles.Admin.ToString());
                     return RedirectToAction("Index");
                 }
             }

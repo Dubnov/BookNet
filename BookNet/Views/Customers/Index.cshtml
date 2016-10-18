@@ -9,6 +9,26 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form>
+    <p>
+        Find by first name: @Html.TextBox("firstname")
+    </p>
+    <p>
+        Find by last name: @Html.TextBox("lastname")
+    </p>
+    <p>
+        Find by email: @Html.TextBox("email")
+    </p>
+    <p>
+        Find by city: @Html.TextBox("city")
+    </p>
+    <p>
+        Find by PhoneNumber: @Html.TextBox("PhoneNumber")
+    </p>
+    <input type="submit" value="Search" />
+</form>
+
 <table class="table">
     <tr>
         <th>
@@ -73,3 +93,39 @@
 }
 
 </table>
+
+<div id="customersMap"></div>
+<script>
+    function initMap() {
+        var mapOptions = {
+            zoom: 7,
+            center: new google.maps.LatLng(31.9228112, 34.9718815)
+        };
+        var map = new google.maps.Map($('#customersMap')[0], mapOptions);
+
+        @foreach (var customer in Model)
+        {
+            <text>
+            //TODO: Replace with ajax
+            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=@customer.Street,@customer.City&sensor=false', null, function (data) {
+                var custLocation = data.results[0].geometry.location;
+                var custMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(custLocation.lat, custLocation.lng),
+                    map: map
+                });
+
+                var markerContent = '<div class="markerContent">@customer.FirstName @customer.LastName</div>';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: markerContent
+                });
+
+                custMarker.addListener('click', function () {
+                    infowindow.open(map, custMarker);
+                });
+            });
+            </text>
+        }
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBqFys-8rdAyBvJ5yZI2KFZfcbVzJU8Q&callback=initMap"></script>

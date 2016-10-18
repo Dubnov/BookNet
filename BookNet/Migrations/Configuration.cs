@@ -92,7 +92,31 @@ namespace BookNet.Migrations
                       Image = "Sins_of_father.jpg",
                       Price = 55
                   });
-                  
+            context.Customers.AddOrUpdate(
+                 new Models.Customer
+                 {
+                     FirstName = "chen",
+                     LastName = "goren",
+                     BirthDate = new DateTime(1994, 11, 15),
+                     City = "qiryat ono",
+                     CreationDate = DateTime.Today,
+                     Email = "chen@goren.com",
+                     PhoneNumber = "052-5145452",
+                     Street = "havazelet 8",
+                     ID = 202551515
+                 },
+               new Models.Customer
+               {
+                   FirstName = "bar",
+                   LastName = "mey",
+                   BirthDate = new DateTime(1985, 12, 15),
+                   City = "qiryat ono",
+                   CreationDate = DateTime.Today,
+                   Email = "bar@mey.com",
+                   PhoneNumber = "054-5145616",
+                   Street = "shlomo hamelech 25",
+                   ID = 313589515
+               });
         }
     }
 }

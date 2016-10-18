@@ -65,3 +65,14 @@ textarea {
     -webkit-column-count: 2;
     margin-bottom: 30px;
 }
+
+#customersMap {
+    height:600px; 
+    width:600px;
+    margin:auto;
+}
+
+.markerContent {
+    margin-left: 15px; 
+    font-weight: bold;
+}

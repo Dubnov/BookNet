@@ -10,6 +10,7 @@ using BookNet.Models;
 
 namespace BookNet.Controllers
 {
+    [Authorization(Roles = "Admin")]
     public class CustomersController : Controller
     {
         private BookStoreModel db = new BookStoreModel();
@@ -20,7 +21,6 @@ namespace BookNet.Controllers
             return View(db.Customers.ToList());
         }
 
-        // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)

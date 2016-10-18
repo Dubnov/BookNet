@@ -15,9 +15,26 @@ namespace BookNet.Controllers
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Authors
-        public ActionResult Index()
+        public ActionResult Index(string firstname,string lastname,string specialty)
         {
-            return View(db.Authors.ToList());
+            var authorsList =  from s in db.Authors
+                               select s;
+            if (!String.IsNullOrEmpty(firstname))
+            {
+                authorsList = authorsList.Where(s => s.FirstName.Contains(firstname));
+            }
+
+            if (!String.IsNullOrEmpty(lastname))
+            {
+                authorsList = authorsList.Where(s => s.LastName.Contains(lastname));
+            }
+
+            if (!String.IsNullOrEmpty(specialty))
+            {
+                authorsList = authorsList.Where(s => s.Specialty.ToString().Contains(specialty));
+            }
+
+            return View(authorsList.ToList());
         }
 
         // GET: Authors/Details/5

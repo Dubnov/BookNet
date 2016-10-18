@@ -88,3 +88,15 @@ textarea {
 .center{
     text-align: center;
 }
+}
+
+#customersMap {
+    height:600px; 
+    width:600px;
+    margin:auto;
+}
+
+.markerContent {
+    margin-left: 15px; 
+    font-weight: bold;
+}

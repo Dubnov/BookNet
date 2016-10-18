@@ -15,9 +15,37 @@ namespace BookNet.Controllers
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string firstname, string lastname, string email, string city, string PhoneNumber)
         {
-            return View(db.Customers.ToList());
+            var customers = from s in db.Customers
+                           select s;
+
+            if (!String.IsNullOrEmpty(firstname))
+            {
+                customers = customers.Where(s => s.FirstName.Contains(firstname));
+            }
+
+            if (!String.IsNullOrEmpty(lastname))
+            {
+                customers = customers.Where(s => s.LastName.Contains(lastname));
+            }
+
+            if (!String.IsNullOrEmpty(email))
+            {
+                customers = customers.Where(s => s.Email.ToString().Contains(email));
+            }
+
+            if (!String.IsNullOrEmpty(city))
+            {
+                customers = customers.Where(s => s.City.ToString().Contains(city));
+            }
+
+            if (!String.IsNullOrEmpty(PhoneNumber))
+            {
+                customers = customers.Where(s => s.PhoneNumber.ToString().Contains(PhoneNumber));
+            }
+
+            return View(customers.ToList());
         }
 
         // GET: Customers/Details/5

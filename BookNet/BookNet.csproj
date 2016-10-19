@@ -192,6 +192,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\BEASTLY_THINGS.jpg" />
+    <Content Include="Images\Donna_Leon.jpg" />
+    <Content Include="Images\HISLOP_VICTORIA.jpg" />
+    <Content Include="Images\Jeffrey_Archer.jpg" />
+    <Content Include="Images\JEWELS_OF_PARADISE.jpg" />
+    <Content Include="Images\Sins_of_father.jpg" />
+    <Content Include="Images\Sparks_Nicholas.jpg" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />

@@ -15,7 +15,7 @@ namespace BookNet.Controllers
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Books
-        public ActionResult Index(string authorname,string titleSearch, string genre)
+        public ActionResult Index(string authorname, string titleSearch, string genre)
         {
             var BookList = from s in db.Books.Include(b => b.Author)
                               select s;

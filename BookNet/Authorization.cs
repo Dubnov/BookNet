@@ -13,6 +13,13 @@ namespace BookNet
 
     public class AuthorizationAttribute : AuthorizeAttribute
     {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary(new { controller = "Errors", action = "UnAuthorized" }));
+
+            //base.HandleUnauthorizedRequest(filterContext);
+        }
+
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var userAuth = httpContext.Session["userAuth"];

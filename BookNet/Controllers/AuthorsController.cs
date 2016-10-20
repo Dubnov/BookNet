@@ -15,14 +15,35 @@ namespace BookNet.Controllers
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Authors
-        public ActionResult Index()
+        public ActionResult Index(string firstname,string lastname,string specialty)
         {
-            return View(db.Authors.ToList());
+            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
+
+            var authorsList =  from s in db.Authors
+                               select s;
+            if (!String.IsNullOrEmpty(firstname))
+            {
+                authorsList = authorsList.Where(s => s.FirstName.Contains(firstname));
+            }
+
+            if (!String.IsNullOrEmpty(lastname))
+            {
+                authorsList = authorsList.Where(s => s.LastName.Contains(lastname));
+            }
+
+            if (!String.IsNullOrEmpty(specialty))
+            {
+                authorsList = authorsList.Where(s => s.Specialty.ToString().Contains(specialty));
+            }
+
+            return View(authorsList.ToList());
         }
 
         // GET: Authors/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -36,6 +57,7 @@ namespace BookNet.Controllers
         }
 
         // GET: Authors/Create
+        [Authorization(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +68,7 @@ namespace BookNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorization(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author)
         {
             if (ModelState.IsValid)
@@ -59,6 +82,7 @@ namespace BookNet.Controllers
         }
 
         // GET: Authors/Edit/5
+        [Authorization(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +102,7 @@ namespace BookNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorization(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author)
         {
             if (ModelState.IsValid)
@@ -90,6 +115,7 @@ namespace BookNet.Controllers
         }
 
         // GET: Authors/Delete/5
+        [Authorization(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +133,7 @@ namespace BookNet.Controllers
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorization(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Author author = db.Authors.Find(id);

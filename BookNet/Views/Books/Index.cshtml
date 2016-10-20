@@ -6,13 +6,30 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{if (ViewBag.IsAdmin)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+
+<form>
+    <p>
+        Find by author name: @Html.TextBox("authorname")
+    </p>
+    <p>
+        Find by title: @Html.TextBox("titleSearch")
+    </p>
+    <p>
+        Find by genre: @Html.TextBox("genre")
+    </p>
+    <input type="submit" value="Search" />
+</form>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Author.FirstName)
+            @Html.DisplayNameFor(model => model.Author.LastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -35,7 +52,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Author.FirstName)
+            @Html.DisplayFor(modelItem => item.Author.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -50,12 +67,16 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';"/>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (ViewBag.IsAdmin)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) @:|
+                }           
+            
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }

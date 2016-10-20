@@ -8,6 +8,10 @@ body {
     position: relative;
     min-height: 100%;
 }
+aside{
+    padding: 5px;    
+    background: linear-gradient(rgba(190, 194, 195, 0.18), #dedede);
+}
 
 footer{
     display: block;
@@ -26,6 +30,11 @@ footer{
     padding: 50px 15px 20px 15px;
     margin-bottom: 50px;
 }
+
+.table{
+    margin-right: 30px;
+}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -113,8 +122,4 @@ textarea {
     font-size: 16px;
     font-weight: bold;
     border-bottom: 1px solid black;
-}
-
-.groupValue{
-    
 }

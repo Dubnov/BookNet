@@ -17,8 +17,8 @@ namespace BookNet.Controllers
         // GET: Books
         public ActionResult Index(string authorname, string titleSearch, string genre)
         {
-            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
-             
+            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());            
+
             var BookList = from s in db.Books.Include(b => b.Author)
                            select s;
 
@@ -55,6 +55,12 @@ namespace BookNet.Controllers
                 return HttpNotFound();
             }
             return View(book);
+        }
+
+        public PartialViewResult Aside()
+        {
+            var genreList = Enum.GetValues(typeof(Genre)).Cast<Genre>();
+            return PartialView("~/Views/Partials/Categories.cshtml", genreList);
         }
 
         // GET: Books/Create

@@ -21,64 +21,68 @@
     <p>
         Find by title: @Html.TextBox("titleSearch")
     </p>
-    <p>
+    @*<p>
         Find by genre: @Html.TextBox("genre")
-    </p>
+    </p>*@
     <input type="submit" value="Search" />
 </form>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Author.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th></th>
-    </tr>
+<section class="col-md-9">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';"/>
-        </td>
-        <td>
-            @if (ViewBag.IsAdmin)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';" />
+                </td>
+                <td>
+                    @if (ViewBag.IsAdmin)
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @:|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) @:|
-                }           
-            
-            @Html.ActionLink("Details", "Details", new { id = item.ID })
-        </td>
-    </tr>
-}
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @:|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }) @:|
+                }
 
-</table>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>
+@Html.Action("Aside")

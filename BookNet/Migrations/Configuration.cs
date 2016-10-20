@@ -16,6 +16,7 @@ namespace BookNet.Migrations
         {
             context.Authors.RemoveRange(context.Authors.ToList());
             context.Books.RemoveRange(context.Books.ToList());
+            context.Customers.RemoveRange(context.Customers.ToList());
             context.SaveChanges();
             
             context.Authors.AddOrUpdate(
@@ -25,7 +26,8 @@ namespace BookNet.Migrations
                     FirstName = "DONNA",
                     LastName = "LEON",
                     Age = 74,
-                    Image = "Donna_Leon.jpg"
+                    Image = "Donna_Leon.jpg",
+                    Specialty = Models.Genre.ScienceFiction
                 },
                 new Models.Author
                 {
@@ -33,7 +35,8 @@ namespace BookNet.Migrations
                     FirstName = "NICHOLAS",
                     LastName = "SPARKS",
                     Age = 50,
-                    Image = "Sparks_Nicholas.jpg"
+                    Image = "Sparks_Nicholas.jpg",
+                    Specialty = Models.Genre.ScienceFiction
                 },
                 new Models.Author
                 {
@@ -41,7 +44,8 @@ namespace BookNet.Migrations
                     FirstName = "JEFFREY",
                     LastName = "ARCHER",
                     Age = 76,
-                    Image = "Jeffrey_Archer.jpg"
+                    Image = "Jeffrey_Archer.jpg",
+                    Specialty = Models.Genre.History
                 },
                 new Models.Author
                 {
@@ -49,7 +53,8 @@ namespace BookNet.Migrations
                     FirstName = "VICTORIA",
                     LastName = "HISLOP",
                     Age = 57,
-                    Image = "HISLOP_VICTORIA.jpg"
+                    Image = "HISLOP_VICTORIA.jpg",
+                    Specialty = Models.Genre.Comedy
                 });
   
             context.Books.AddOrUpdate(
@@ -58,7 +63,8 @@ namespace BookNet.Migrations
                     ID = 0,
                     AuthorID = 0,
                     Title = "BEASTLY THINGS",
-                    Description = "When a body is found floating in a canal, strangely disfigured and with multiple stab wounds, Commissario Brunetti is called to investigate and is convinced he recognises the man from somewhere.",                    Genre = Models.Genre.ScienceFiction,
+                    Description = "When a body is found floating in a canal, strangely disfigured and with multiple stab wounds, Commissario Brunetti is called to investigate and is convinced he recognises the man from somewhere.",
+                    Genre = Models.Genre.Action,
                     Image = "BEASTLY_THINGS.jpg",
                     Price = 62
                 },
@@ -78,7 +84,7 @@ namespace BookNet.Migrations
                       AuthorID = 0,
                       Title = "JEWELS OF PARADISE",
                       Description = "From the bestselling author of the Brunetti crime series comes The Jewels of Paradise, a gripping tale of intrigue, music, history and greed and Donna Leon's first stand-alone novel",
-                      Genre = Models.Genre.ScienceFiction,
+                      Genre = Models.Genre.Comedy,
                       Image = "JEWELS_OF_PARADISE.jpg",
                       Price = 55
                   },

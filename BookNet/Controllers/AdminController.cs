@@ -1,8 +1,10 @@
-﻿using System;
+﻿using BookNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace BookNet.Controllers
 {    
@@ -43,6 +45,16 @@ namespace BookNet.Controllers
 
             ModelState.AddModelError("", "The username or password was incorrect.");
             return View();
+        }
+        
+        public ActionResult BooksReport()
+        {
+            using (BookStoreModel db = new BookStoreModel())
+            {
+                var booksList = db.Books.Include(p => p.Customers).Include(p => p.Author).GroupBy(x => x.Genre).ToList();
+
+                return View(booksList);
+            }            
         }
     }
 }

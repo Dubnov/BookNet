@@ -20,7 +20,7 @@ namespace BookNet.Controllers
             ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
              
             var BookList = from s in db.Books.Include(b => b.Author)
-                              select s;
+                           select s;
 
             if (!String.IsNullOrEmpty(authorname))
             {

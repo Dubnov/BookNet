@@ -1,0 +1,26 @@
+﻿@model IEnumerable<IGrouping<BookNet.Models.Genre, BookNet.Models.Book>>
+
+@{
+    ViewBag.Title = "BooksReport";
+}
+
+<h2>Books Report</h2>
+<hr />
+
+@foreach (var group in Model)
+{
+    <div>
+        <label class="groupKey">@group.Key</label>
+        <div class="groupValue">
+            @foreach (var book in group)
+            {
+                <p>
+                    @book.Title
+                </p>
+                <p>
+                    Number of customers which bought this book: <span>@(book.Customers == null ? 0 : book.Customers.Count)</span>
+                </p>
+            }
+        </div>
+    </div>
+}

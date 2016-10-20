@@ -17,6 +17,8 @@ namespace BookNet.Controllers
         // GET: Books
         public ActionResult Index(string authorname, string titleSearch, string genre)
         {
+            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
+             
             var BookList = from s in db.Books.Include(b => b.Author)
                               select s;
 
@@ -41,6 +43,8 @@ namespace BookNet.Controllers
         // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
+            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

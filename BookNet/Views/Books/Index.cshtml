@@ -6,9 +6,13 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{if (ViewBag.IsAdmin)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
 
 <form>
     <p>
@@ -66,9 +70,13 @@
             <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';"/>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (ViewBag.IsAdmin)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) @:|
+                }           
+            
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
     </tr>
 }

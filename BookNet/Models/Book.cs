@@ -47,6 +47,7 @@ namespace BookNet.Models
         public string Image { get; set; }
 
         [ForeignKey("Author")]
+        [Display(Name = "Author")]
         public int AuthorID { get; set; }
 
         #endregion

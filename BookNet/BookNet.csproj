@@ -264,6 +264,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\_Layout.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\BooksReport.cshtml" />
     <None Include="Views\Errors\UnAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace BookNet.Controllers
         public ActionResult Index(string firstname, string lastname, string email, string city, string PhoneNumber)
         {
             var customers = from s in db.Customers
-                           select s;
+                            select s;
 
             if (!String.IsNullOrEmpty(firstname))
             {

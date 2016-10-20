@@ -100,3 +100,11 @@ textarea {
     margin-left: 15px; 
     font-weight: bold;
 }
+
+#appTitle {
+    -webkit-transition: width 2s;
+    transition: transform 2s;
+}
+#appTitle:hover{
+    transform: rotate(360deg);
+}

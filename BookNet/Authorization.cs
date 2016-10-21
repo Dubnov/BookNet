@@ -26,5 +26,12 @@ namespace BookNet
 
             return (userAuth != null && Roles.Split(',').Contains(userAuth.ToString()));
         }
+
+        public static bool IsAdminLogedIn()
+        {
+            var userAuth = HttpContext.Current.Session["userAuth"];
+
+            return (userAuth != null && userAuth.ToString() == BookNet.Roles.Admin.ToString());
+        }
     }
 }

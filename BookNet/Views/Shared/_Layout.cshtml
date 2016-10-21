@@ -23,8 +23,18 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                    <li>@Html.ActionLink("Authors", "Index", "Authors")</li>                    
-                    <li>@Html.ActionLink("Admin Page", "Login", "Admin")</li>
+                    <li>@Html.ActionLink("Authors", "Index", "Authors")</li>
+                    
+                    @if (AuthorizationAttribute.IsAdminLogedIn())
+                    {
+                        <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                        <li>@Html.ActionLink("Reprot", "BooksReport", "Admin")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Admin")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Admin Page", "Login", "Admin")</li>
+                    }
                 </ul>
             </div>
         </div>

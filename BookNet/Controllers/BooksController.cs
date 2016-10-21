@@ -17,7 +17,7 @@ namespace BookNet.Controllers
         // GET: Books
         public ActionResult Index(string authorname, string titleSearch, string genre)
         {
-            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());            
+            ViewBag.IsAdmin = AuthorizationAttribute.IsAdminLogedIn();            
 
             var BookList = from s in db.Books.Include(b => b.Author)
                            select s;

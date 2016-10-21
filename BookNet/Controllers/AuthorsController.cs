@@ -17,7 +17,7 @@ namespace BookNet.Controllers
         // GET: Authors
         public ActionResult Index(string firstname,string lastname,string specialty)
         {
-            ViewBag.IsAdmin = (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString());
+            ViewBag.IsAdmin = AuthorizationAttribute.IsAdminLogedIn();
 
             var authorsList =  from s in db.Authors
                                select s;

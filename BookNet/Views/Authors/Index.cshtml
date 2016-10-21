@@ -16,17 +16,20 @@
 
 @using (Html.BeginForm())
 {
-    <form>
-        <p>
-            Find by first name: @Html.TextBox("firstname")
-        </p>
-        <p>
-            Find by last name: @Html.TextBox("lastname")
-        </p>
-        <p>
-            Find by specialty: @Html.TextBox("specialty")
-        </p>
-        <input type="submit" value="Search" />
+    <form class="searchForm">
+        <fieldset>
+            <legend>Search:</legend>
+            <div class="searchField">
+                First Name: @Html.TextBox("firstname")
+            </div>
+            <div class="searchField">
+                Last Name: @Html.TextBox("lastname")
+            </div>
+            <div class="searchField">
+                Specialty: @Html.TextBox("specialty")
+            </div>
+            <input class="searchButton btn btn-default" type="submit" value="Search" />
+        </fieldset>
     </form>
 }
 <table class="table">

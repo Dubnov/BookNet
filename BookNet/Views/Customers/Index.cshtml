@@ -10,23 +10,23 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form>
-    <p>
-        Find by first name: @Html.TextBox("firstname")
-    </p>
-    <p>
-        Find by last name: @Html.TextBox("lastname")
-    </p>
-    <p>
-        Find by email: @Html.TextBox("email")
-    </p>
-    <p>
-        Find by city: @Html.TextBox("city")
-    </p>
-    <p>
-        Find by PhoneNumber: @Html.TextBox("PhoneNumber")
-    </p>
-    <input type="submit" value="Search" />
+<form class="searchForm">
+    <fieldset>
+        <legend>Search:</legend>
+        <div class="searchField">
+            First Name: @Html.TextBox("firstname")
+        </div>
+        <div class="searchField">
+            Last Name: @Html.TextBox("lastname")
+        </div>
+        <div class="searchField">
+            City: @Html.TextBox("city")
+        </div>
+        <div class="searchField">
+            Phone: @Html.TextBox("PhoneNumber")
+        </div>
+        <input class="searchButton btn btn-default" type="submit" value="Search" />
+    </fieldset>
 </form>
 
 <table class="table">

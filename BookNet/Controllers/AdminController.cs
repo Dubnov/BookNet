@@ -18,12 +18,18 @@ namespace BookNet.Controllers
 
         public ActionResult Login()
         {
-            if (HttpContext.Session["userAuth"] != null && HttpContext.Session["userAuth"].ToString() == Roles.Admin.ToString())
+            if (AuthorizationAttribute.IsAdminLogedIn())
             {
                 return RedirectToAction("Index");
             }
 
             return View();
+        }
+        
+        public ActionResult Logout()
+        {
+            HttpContext.Session["userAuth"] = null;
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
@@ -47,6 +53,7 @@ namespace BookNet.Controllers
             return View();
         }
         
+        [Authorization(Roles = "Admin")]
         public ActionResult BooksReport()
         {
             using (BookStoreModel db = new BookStoreModel())

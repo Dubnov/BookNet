@@ -283,6 +283,7 @@
     <Content Include="Views\Admin\BooksReport.cshtml" />
     <Content Include="Views\Partials\Categories.cshtml" />
     <None Include="Service References\ConverterService\converter.wsdl" />
+    <Content Include="Views\Books\BuyBook.cshtml" />
     <None Include="Views\Errors\UnAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>

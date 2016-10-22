@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
 
 <p>
@@ -100,7 +99,6 @@
         @foreach (var customer in Model)
         {
             <text>
-            //TODO: Replace with ajax
             $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=@customer.Street,@customer.City&sensor=false', null, function (data) {
                 var custLocation = data.results[0].geometry.location;
                 var custMarker = new google.maps.Marker({

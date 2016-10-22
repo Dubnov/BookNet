@@ -9,7 +9,8 @@
 <div>
     <h4>Author</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <img src="~/Images/@Model.Image" width="200" height="200" onerror="this.src = '~/Images/unknown.jpg';" />
+    <dl class="dl-horizontal" style="display: inline-block;">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -35,21 +36,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Specialty)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Specialty)
         </dd>
-
     </dl>
 </div>
 <p>

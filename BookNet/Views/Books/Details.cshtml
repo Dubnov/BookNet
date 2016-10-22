@@ -46,19 +46,16 @@
             @Html.DisplayNameFor(model => model.Price)
         </dt>
 
-        <dd>
+        <dd id="priceUSD">
             @Html.DisplayFor(model => model.Price)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
+            Price(NIS)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
+        <dd id="priceNIS">
         </dd>
-
     </dl>
+    <img src="~/Images/@Model.Image" class="bookImage" width="200" height="200" onerror="this.src = '~/Images/unknown.jpg';" />
 </div>
 <p>
     @if (ViewBag.IsAdmin)
@@ -68,3 +65,14 @@
 
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@*TODO: Delete this script and move the second script to js file*@
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function getConvRate() {
+        $.get("/Books/GetConversionRate", null, function (conversionRate) {
+            $('#priceNIS').text(conversionRate * parseInt($('#priceUSD').text()));
+        });
+    };
+    getConvRate();
+</script>

@@ -90,6 +90,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,6 +184,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ConverterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -201,6 +207,7 @@
     <Content Include="Images\unknown.jpg" />
     <Content Include="Images\Sins_of_father.jpg" />
     <Content Include="Images\Sparks_Nicholas.jpg" />
+    <Content Include="Images\unknownAuthor.jpg" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -213,6 +220,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -231,6 +239,16 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Service References\ConverterService\BookNet.ConverterService.ConvertDataTableColumnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ConverterService\converter.disco" />
+    <None Include="Service References\ConverterService\configuration91.svcinfo" />
+    <None Include="Service References\ConverterService\configuration.svcinfo" />
+    <None Include="Service References\ConverterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Videos\AboutStore.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -264,6 +282,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\BooksReport.cshtml" />
     <Content Include="Views\Partials\Categories.cshtml" />
+    <None Include="Service References\ConverterService\converter.wsdl" />
     <None Include="Views\Errors\UnAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +296,12 @@
     <EmbeddedResource Include="Migrations\201610171150125_Initial.resx">
       <DependentUpon>201610171150125_Initial.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ConverterService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

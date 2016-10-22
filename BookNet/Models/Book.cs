@@ -41,6 +41,7 @@ namespace BookNet.Models
         public Genre Genre { get; set; }
 
         [Required]
+        [Display(Name = "Price(USD)")]
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 

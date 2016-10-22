@@ -11,11 +11,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Author.FirstName)
+           Author's Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author.FirstName)
+            @Model.Author.FirstName
+            @Model.Author.LastName
         </dd>
 
         <dt>
@@ -54,7 +55,11 @@
         </dt>
         <dd id="priceNIS">
         </dd>
-    </dl>
+        <dd>
+            @Html.ActionLink("Buy", "BuyBook", new { bookId = Model.ID })
+        </dd>    
+    </dl>    
+    
     <img src="~/Images/@Model.Image" class="bookImage" width="200" height="200" onerror="this.src = '~/Images/unknown.jpg';" />
 </div>
 <p>

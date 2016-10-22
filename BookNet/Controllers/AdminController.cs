@@ -57,11 +57,22 @@ namespace BookNet.Controllers
         public ActionResult BooksReport()
         {
             using (BookStoreModel db = new BookStoreModel())
-            {
-                var booksList = db.Books.Include(p => p.Customers).Include(p => p.Author).GroupBy(x => x.Genre).ToList();
+            {                
+                var booksList = (from book in db.Books
+                                 group book by book.Genre into g
+                                 select g).ToList();                                 
 
                 return View(booksList);
             }            
+        }
+
+        [Authorization(Roles = "Admin")]
+        public int GetBookCustomers(int bookId)
+        {
+            using (BookStoreModel db = new BookStoreModel())
+            {
+                return db.Books.Where(x => x.ID == bookId).Include(p => p.Customers).First().Customers.Count;
+            }
         }
     }
 }

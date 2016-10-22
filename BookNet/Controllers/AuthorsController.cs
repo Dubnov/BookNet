@@ -15,12 +15,20 @@ namespace BookNet.Controllers
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Authors
-        public ActionResult Index(string firstname,string lastname,string specialty)
+        public ActionResult Index(string firstname, string lastname, Genre? specialty)
         {
             ViewBag.IsAdmin = AuthorizationAttribute.IsAdminLogedIn();
 
-            var authorsList =  from s in db.Authors
-                               select s;
+            var genreList = Enum.GetValues(typeof(Genre)).Cast<Genre>().ToList();
+            List<SelectListItem> selectListItemList = new List<SelectListItem>();
+            genreList.ForEach(x => selectListItemList.Add(new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }));
+            selectListItemList.Add(new SelectListItem { Text = "All", Value = null });
+
+            ViewBag.SpecialtySelectList = selectListItemList;
+
+
+            var authorsList = from s in db.Authors
+                              select s;
             if (!String.IsNullOrEmpty(firstname))
             {
                 authorsList = authorsList.Where(s => s.FirstName.Contains(firstname));
@@ -31,9 +39,9 @@ namespace BookNet.Controllers
                 authorsList = authorsList.Where(s => s.LastName.Contains(lastname));
             }
 
-            if (!String.IsNullOrEmpty(specialty))
+            if (specialty != null)
             {
-                authorsList = authorsList.Where(s => s.Specialty.ToString().Contains(specialty));
+                authorsList = authorsList.Where(s => s.Specialty == specialty);
             }
 
             return View(authorsList.ToList());

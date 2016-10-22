@@ -27,6 +27,7 @@ namespace BookNet.Models
         #region Properties
 
         [Key]
+        [Required]
         public int ID { get; set; }
 
         [Required]
@@ -38,18 +39,29 @@ namespace BookNet.Models
         public string Description { get; set; }
 
         [Required]
+        [EnumDataType(typeof(Genre))]
         public Genre Genre { get; set; }
 
-        [Required]
+        [Required]        
         [Display(Name = "Price(USD)")]
         [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
 
+        [DataType(DataType.Upload)]
         public string Image { get; set; }
 
         [ForeignKey("Author")]
         [Display(Name = "Author")]
         public int AuthorID { get; set; }
+
+        #endregion
+
+        #region Ctor
+
+        public Book()
+        {
+            this.Customers = new HashSet<Customer>();
+        }
 
         #endregion
 

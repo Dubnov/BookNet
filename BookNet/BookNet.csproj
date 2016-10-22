@@ -207,6 +207,7 @@
     <Content Include="Images\unknown.jpg" />
     <Content Include="Images\Sins_of_father.jpg" />
     <Content Include="Images\Sparks_Nicholas.jpg" />
+    <Content Include="Images\unknownAuthor.jpg" />
     <Content Include="Scripts\AboutPageScript.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />

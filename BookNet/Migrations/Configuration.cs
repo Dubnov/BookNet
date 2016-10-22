@@ -101,6 +101,7 @@ namespace BookNet.Migrations
 
             book1.Customers.Add(new Models.Customer
             {
+                ID = "201335456",
                 FirstName = "chen",
                 LastName = "goren",
                 BirthDate = new DateTime(1994, 11, 15),
@@ -114,6 +115,7 @@ namespace BookNet.Migrations
             book2.Customers.Add(                 
                new Models.Customer
                {
+                   ID = "205788951",
                    FirstName = "bar",
                    LastName = "mey",
                    BirthDate = new DateTime(1985, 12, 15),
@@ -127,13 +129,14 @@ namespace BookNet.Migrations
             book3.Customers.Add(
                 new Models.Customer
                 {
+                    ID = "205787013",
                     FirstName = "Dor",
                     LastName = "Dubnov",
                     BirthDate = new DateTime(1994, 7, 17),
                     City = "Tel Aviv",
                     CreationDate = DateTime.Now,
                     Email = "dor@dubnov.com",
-                    PhoneNumber = "054 - 6655266",
+                    PhoneNumber = "054-6655266",
                     Street = "Dubnov 8"
                 });
 

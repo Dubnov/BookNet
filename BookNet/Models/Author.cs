@@ -10,18 +10,26 @@ namespace BookNet.Models
     {
         #region Properties
 
+        [Key]
+        [Required]
         public int ID { get; set; }
 
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Required]        
         public int Age { get; set; }
 
+        [DataType(DataType.Upload)]
         public string Image { get; set; }
 
+        [Required]
+        [EnumDataType(typeof(Genre))]
         public Genre Specialty { get; set; }
 
         #endregion

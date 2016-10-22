@@ -208,10 +208,8 @@
     <Content Include="Images\Sins_of_father.jpg" />
     <Content Include="Images\Sparks_Nicholas.jpg" />
     <Content Include="Images\unknownAuthor.jpg" />
-    <Content Include="Scripts\AboutPageScript.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="Scripts\BooksScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -285,6 +283,7 @@
     <Content Include="Views\Admin\BooksReport.cshtml" />
     <Content Include="Views\Partials\Categories.cshtml" />
     <None Include="Service References\ConverterService\converter.wsdl" />
+    <Content Include="Views\Books\BuyBook.cshtml" />
     <None Include="Views\Errors\UnAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -14,8 +14,11 @@
     }
 }
 
-<form class="searchForm">
-    <fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
         <legend>Search:</legend>
         <div class="searchField">
             Author Name: @Html.TextBox("authorname")
@@ -23,13 +26,10 @@
         <div class="searchField">
             Title: @Html.TextBox("titleSearch")
         </div>
-        @*<div class="searchField">
-          Find by genre: @Html.TextBox("genre")
-          </div>*@
         <input class="searchButton btn btn-default" type="submit" value="Search" />
     </fieldset>
-</form>
-<section class="col-md-9">
+}
+<section class="col-md-10">
     <table class="table">
         <tr>
             <th>
@@ -69,7 +69,7 @@
                     @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Price)$
                 </td>
                 <td>
                     <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';" />

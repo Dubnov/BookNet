@@ -36,7 +36,16 @@ namespace BookNet.Models
         public DateTime CreationDate { get; set; }
 
         #endregion
-        
+
+        #region Ctor
+
+        public Customer()
+        {
+            this.Books = new HashSet<Book>();
+        }
+
+        #endregion
+
         #region Navigate Properties
 
         public ICollection<Book> Books { get; set; } 

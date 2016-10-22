@@ -10,15 +10,16 @@
 @foreach (var group in Model)
 {
     <div>
-        <label class="groupKey">@group.Key</label>
+        <label class="groupKey">@group.Key.ToString()</label>
         <div class="groupValue">
             @foreach (var book in group)
             {
                 <p>
-                    @book.Title
+                    @book.Title ,
+                    Sold Count: @Html.Action("GetBookCustomers", new { bookId = book.ID })
                 </p>
                 <p>
-                    Number of customers which bought this book: <span>@(book.Customers == null ? 0 : book.Customers.Count)</span>
+                    
                 </p>
             }
         </div>

@@ -52,6 +52,15 @@ namespace BookNet.Models
 
         #endregion
 
+        #region Ctor
+
+        public Book()
+        {
+            this.Customers = new HashSet<Customer>();
+        }
+
+        #endregion
+
         #region Navigate Properties
 
         public Author Author { get; set; }

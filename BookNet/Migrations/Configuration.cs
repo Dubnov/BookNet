@@ -6,14 +6,15 @@ namespace BookNet.Migrations
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Models.BookStoreModel>
-    {
+    {        
         public Configuration()
-        {
+        {            
             AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Models.BookStoreModel context)
         {
+            context.Database.Initialize(true);
             context.Authors.RemoveRange(context.Authors.ToList());
             context.Books.RemoveRange(context.Books.ToList());
             context.Customers.RemoveRange(context.Customers.ToList());

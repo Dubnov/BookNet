@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201610171150125_Initial.Designer.cs">
       <DependentUpon>201610171150125_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610221946333_ChangeCustomerIdDataType.cs" />
+    <Compile Include="Migrations\201610221946333_ChangeCustomerIdDataType.Designer.cs">
+      <DependentUpon>201610221946333_ChangeCustomerIdDataType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
@@ -296,6 +300,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610171150125_Initial.resx">
       <DependentUpon>201610171150125_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610221946333_ChangeCustomerIdDataType.resx">
+      <DependentUpon>201610221946333_ChangeCustomerIdDataType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

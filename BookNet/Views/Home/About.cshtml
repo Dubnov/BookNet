@@ -2,17 +2,9 @@
 @{
     ViewBag.Title = "About";
 }
-
+@Scripts.Render("~/Scripts/AboutPageScript.js")
 <canvas id="aboutPageTitle" width="150" height="70"></canvas>
-<script>
-    //TODO: Replace with jquery
-    var canvas = document.getElementById("aboutPageTitle");
-    var ctx = canvas.getContext("2d");
-    ctx.font = "35px Comic Sans MS";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
-    ctx.fillText("About Us", canvas.width/2, canvas.height / 2);
-</script>
+
 
 <video id="aboutVideo" width="480" height="270" controls autoplay>
     <source src="../../Videos/AboutStore.mp4" type="video/mp4">
@@ -33,19 +25,4 @@
 <br />
 <div id="map"></div>
 
-<script>
-    function initMap() {
-        var centerCord = { lat: 31.969738, lng: 34.7727872 };
-
-        var map = new google.maps.Map($('#map')[0], {
-            zoom: 15,
-            center: centerCord
-        });
-
-        var marker = new google.maps.Marker({
-            position: centerCord,
-            map: map
-        });
-    }
-</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBqFys-8rdAyBvJ5yZI2KFZfcbVzJU8Q&callback=initMap"></script>

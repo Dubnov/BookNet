@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@Scripts.Render("~/Scripts/BooksScript.js")
 <h2>Details</h2>
 
 <div>
@@ -48,7 +48,7 @@
         </dt>
 
         <dd id="priceUSD">
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Price)$
         </dd>
         <dt>
             Price(NIS)
@@ -70,15 +70,3 @@
 
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-@*TODO: Delete this script and move the second script to js file*@
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    function getConvRate() {
-        $.get("/Books/GetConversionRate", null, function (conversionRate) {
-            var finalPrice = conversionRate * parseInt($('#priceUSD').text());
-            $('#priceNIS').text(finalPrice.toFixed(2));
-        });
-    };
-    getConvRate();
-</script>

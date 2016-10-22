@@ -7,11 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookNet.Models;
+using BookNet.ConverterService;
 
 namespace BookNet.Controllers
 {
     public class BooksController : Controller
     {
+        const string DOLLAR_CURRENCY_CODE = "USD";
+        const string SHEKEL_CURRENCY_CODE = "ILS";
         private BookStoreModel db = new BookStoreModel();
 
         // GET: Books
@@ -53,10 +56,22 @@ namespace BookNet.Controllers
             if (book == null)
             {
                 return HttpNotFound();
-            }
+            } 
+            
             return View(book);
         }
 
+        public decimal GetConversionRate()
+        {
+            decimal dConversionRate;
+
+            ConverterSoapClient converterService = new ConverterSoapClient();
+            dConversionRate = converterService.GetConversionRate(DOLLAR_CURRENCY_CODE,
+                                                                 SHEKEL_CURRENCY_CODE,
+                                                                 new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day));
+
+            return (dConversionRate);
+        }
         public PartialViewResult Aside()
         {
             var genreList = Enum.GetValues(typeof(Genre)).Cast<Genre>();

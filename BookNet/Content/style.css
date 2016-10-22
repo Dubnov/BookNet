@@ -153,3 +153,12 @@ fieldset {
     padding-left: 15px;
 }
 
+.bookImage {
+    margin: auto;
+    display: block;
+}
+
+.authorImage {
+    margin: auto;
+    display: block;
+}

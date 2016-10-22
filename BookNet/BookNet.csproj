@@ -279,8 +279,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\_Layout.cshtml" />
-    <Content Include="Views\Admin\_ViewStart.cshtml" />
     <Content Include="Views\Admin\BooksReport.cshtml" />
     <Content Include="Views\Partials\Categories.cshtml" />
     <None Include="Service References\ConverterService\converter.wsdl" />

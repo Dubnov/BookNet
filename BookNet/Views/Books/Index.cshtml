@@ -14,8 +14,11 @@
     }
 }
 
-<form class="searchForm">
-    <fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
         <legend>Search:</legend>
         <div class="searchField">
             Author Name: @Html.TextBox("authorname")
@@ -23,12 +26,9 @@
         <div class="searchField">
             Title: @Html.TextBox("titleSearch")
         </div>
-        @*<div class="searchField">
-          Find by genre: @Html.TextBox("genre")
-          </div>*@
         <input class="searchButton btn btn-default" type="submit" value="Search" />
     </fieldset>
-</form>
+}
 <section class="col-md-9">
     <table class="table">
         <tr>

@@ -77,13 +77,24 @@ namespace BookNet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorization(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author)
+        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author, HttpPostedFileBase imageUpload)
         {
             if (ModelState.IsValid)
             {
-                db.Authors.Add(author);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (imageUpload != null && imageUpload.ContentLength > 0)
+                {
+                    if (Utils.SaveImage(imageUpload))
+                    {
+                        author.Image = imageUpload.FileName;
+                        db.Authors.Add(author);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The author image could not been saved.");
+                    }
+                }                
             }
 
             return View(author);
@@ -111,13 +122,25 @@ namespace BookNet.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorization(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author, HttpPostedFileBase imageUpload)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(author).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (imageUpload != null && imageUpload.ContentLength > 0)
+                {
+                    if (Utils.SaveImage(imageUpload))
+                    {
+                        author.Image = imageUpload.FileName;
+                        db.Entry(author).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The new author image could not been saved.");
+                    }
+                }
+                
             }
             return View(author);
         }

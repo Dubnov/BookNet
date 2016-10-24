@@ -153,6 +153,10 @@ namespace BookNet.Controllers
                 if (isFileValid)
                 {
                     db.Entry(author).State = EntityState.Modified;
+
+                    if (string.IsNullOrEmpty(author.Image))
+                        db.Entry(author).Property(p => p.Image).IsModified = false;
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

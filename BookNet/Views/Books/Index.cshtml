@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<BookNet.Models.Book>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Books";
 }
 
-<h2>Index</h2>
+<h2>Books List</h2>
 
 @{if (ViewBag.IsAdmin)
     {
@@ -33,10 +33,12 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Author.LastName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                Author
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -47,9 +49,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
             <th></th>
         </tr>
 
@@ -57,10 +56,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Author.LastName)
+                    <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '~/Images/unknown.jpg';" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.LastName) @Html.DisplayFor(modelItem => item.Author.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -70,9 +72,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)$
-                </td>
-                <td>
-                    <img src="~/Images/@item.Image" width="100" height="100" onerror="this.src = '/Images/unknown.jpg';" />
                 </td>
                 <td>
                     @if (ViewBag.IsAdmin)

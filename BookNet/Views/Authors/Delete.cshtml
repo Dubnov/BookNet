@@ -1,7 +1,7 @@
 ﻿@model BookNet.Models.Author
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete - " + Model.FirstName + " " + Model.LastName;
 }
 
 <h2>Delete</h2>
@@ -57,8 +57,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-default" })
+            <input type="submit" value="Delete" class="btn btn-default" /> 
         </div>
     }
 </div>

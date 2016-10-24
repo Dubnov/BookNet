@@ -1,7 +1,7 @@
 ﻿@model BookNet.Models.Book
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add Book";
 }
 
 <h2>Create</h2>
@@ -72,7 +72,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {

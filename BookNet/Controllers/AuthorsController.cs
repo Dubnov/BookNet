@@ -79,22 +79,30 @@ namespace BookNet.Controllers
         [Authorization(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author, HttpPostedFileBase imageUpload)
         {
+            bool isFileValid = true;
+
             if (ModelState.IsValid)
             {
                 if (imageUpload != null && imageUpload.ContentLength > 0)
                 {
                     if (Utils.SaveImage(imageUpload))
                     {
+                        isFileValid = true;
                         author.Image = imageUpload.FileName;
-                        db.Authors.Add(author);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
                     }
                     else
                     {
+                        isFileValid = false;
                         ModelState.AddModelError("", "The author image could not been saved.");
                     }
-                }                
+                }
+
+                if (isFileValid)
+                {
+                    db.Authors.Add(author);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(author);
@@ -124,21 +132,29 @@ namespace BookNet.Controllers
         [Authorization(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Age,Image,Specialty")] Author author, HttpPostedFileBase imageUpload)
         {
+            bool isFileValid = true;
+
             if (ModelState.IsValid)
             {
                 if (imageUpload != null && imageUpload.ContentLength > 0)
                 {
                     if (Utils.SaveImage(imageUpload))
                     {
+                        isFileValid = true;
                         author.Image = imageUpload.FileName;
-                        db.Entry(author).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
                     }
                     else
                     {
+                        isFileValid = false;
                         ModelState.AddModelError("", "The new author image could not been saved.");
                     }
+                }
+
+                if (isFileValid)
+                {
+                    db.Entry(author).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
                 
             }

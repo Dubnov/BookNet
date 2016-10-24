@@ -233,11 +233,15 @@ namespace BookNet.Controllers
                         isFileValid = false;
                         ModelState.AddModelError("", "The new book image could not been saved");
                     }                    
-                }
+                }                
 
                 if (isFileValid)
                 {
                     db.Entry(book).State = EntityState.Modified;
+
+                    if (string.IsNullOrEmpty(book.Image))
+                        db.Entry(book).Property(p => p.Image).IsModified = false;
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

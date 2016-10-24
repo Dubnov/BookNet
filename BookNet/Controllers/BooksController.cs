@@ -151,22 +151,31 @@ namespace BookNet.Controllers
         [Authorization(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,Title,Description,Genre,Price,Image,AuthorID")] Book book, HttpPostedFileBase imageUpload)
         {
+            bool isFileValid = true;
+
             if (ModelState.IsValid)
             {
                 if (imageUpload != null && imageUpload.ContentLength > 0)
                 {
                     if (Utils.SaveImage(imageUpload))
                     {
-                        book.Image = imageUpload.FileName;
-                        db.Books.Add(book);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                        isFileValid = true;
+                        book.Image = imageUpload.FileName;                        
                     }
                     else
                     {
+                        isFileValid = false;
                         ModelState.AddModelError("", "The book image could not been saved.");
                     }                    
-                }                
+                }
+
+                if (isFileValid)
+                {
+                    db.Books.Add(book);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                
             }
 
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", book.AuthorID);
@@ -194,22 +203,30 @@ namespace BookNet.Controllers
         [Authorization(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,Title,Description,Genre,Price,Image,AuthorID")] Book book, HttpPostedFileBase imageUpload)
         {
+            bool isFileValid = true;
+
             if (ModelState.IsValid)
             {
                 if (imageUpload != null && imageUpload.ContentLength > 0)
                 {
                     if (Utils.SaveImage(imageUpload))
                     {
-                        book.Image = imageUpload.FileName;
-                        db.Entry(book).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                        isFileValid = true;
+                        book.Image = imageUpload.FileName;                        
                     }
                     else
                     {
+                        isFileValid = false;
                         ModelState.AddModelError("", "The new book image could not been saved");
                     }                    
-                }                
+                }
+
+                if (isFileValid)
+                {
+                    db.Entry(book).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", book.AuthorID);

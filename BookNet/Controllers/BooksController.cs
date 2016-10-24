@@ -142,7 +142,14 @@ namespace BookNet.Controllers
         [Authorization(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName");
+            var authors = db.Authors.Select(author => new
+            {
+                ID = author.ID,
+                FullName = author.FirstName + " " + author.LastName
+            });
+
+            ViewBag.AuthorID = new SelectList(authors, "ID", "FullName");
+
             return View();
         }
 
@@ -185,7 +192,14 @@ namespace BookNet.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", book.AuthorID);
+
+            var authors = db.Authors.Select(author => new
+            {
+                ID = author.ID,
+                FullName = author.FirstName + " " + author.LastName
+            });
+
+            ViewBag.AuthorID = new SelectList(authors, "ID", "FullName", book.AuthorID);
             return View(book);
         }
       
@@ -223,7 +237,7 @@ namespace BookNet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
+            Book book = db.Books.Where(currBook => currBook.ID == id).Include(currBook => currBook.Author).First();
             if (book == null)
             {
                 return HttpNotFound();

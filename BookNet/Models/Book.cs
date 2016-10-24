@@ -36,6 +36,7 @@ namespace BookNet.Models
 
         [Required]
         [MaxLength(200)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Required]

@@ -27,7 +27,7 @@ namespace BookNet.Controllers
 
             if (!String.IsNullOrEmpty(authorname))
             {
-                BookList = BookList.Where(s => s.Author.LastName.Contains(authorname));
+                BookList = BookList.Where(s => s.Author.LastName.Contains(authorname) || s.Author.FirstName.Contains(authorname));
             }
 
             if (!String.IsNullOrEmpty(titleSearch))

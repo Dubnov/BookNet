@@ -13,6 +13,7 @@ namespace BookNet.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [RegularExpression(@"\d{9}", ErrorMessage = "Invalid ID - ID must contain 9 digits")]
         [Required]        
         public string ID { get; set; }
 
@@ -36,6 +37,7 @@ namespace BookNet.Models
                 
         [Required]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^0([0-9]{1,2})([-]{0,1})([0-9]{7})$", ErrorMessage = "Invalid Phone Number")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 

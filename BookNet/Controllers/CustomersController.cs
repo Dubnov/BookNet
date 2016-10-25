@@ -78,6 +78,7 @@ namespace BookNet.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.CreationDate = DateTime.Now;
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");

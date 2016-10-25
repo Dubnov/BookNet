@@ -78,9 +78,17 @@ namespace BookNet.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.Customers.Any(x => x.ID == customer.ID))
+                {
+                    ModelState.AddModelError("ID", "A customer with this ID already exist.");
+                }
+                else
+                {
+                    customer.CreationDate = DateTime.Now;
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }                
             }
 
             return View(customer);

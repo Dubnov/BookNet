@@ -23,6 +23,7 @@ namespace BookNet.Models
         public string LastName { get; set; }
 
         [Required]        
+        [Range(1, 120)]
         public int Age { get; set; }
 
         [DataType(DataType.Upload)]

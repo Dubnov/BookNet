@@ -22,7 +22,7 @@ namespace BookNet.Controllers
             var genreList = Enum.GetValues(typeof(Genre)).Cast<Genre>().ToList();
             List<SelectListItem> selectListItemList = new List<SelectListItem>();
             genreList.ForEach(x => selectListItemList.Add(new SelectListItem { Text = x.ToString(), Value = ((int)x).ToString() }));
-            selectListItemList.Add(new SelectListItem { Text = "All", Value = null });
+            selectListItemList.Add(new SelectListItem { Text = "All", Value = null, Selected = true });
 
             ViewBag.SpecialtySelectList = selectListItemList;
 
@@ -153,6 +153,10 @@ namespace BookNet.Controllers
                 if (isFileValid)
                 {
                     db.Entry(author).State = EntityState.Modified;
+
+                    if (string.IsNullOrEmpty(author.Image))
+                        db.Entry(author).Property(p => p.Image).IsModified = false;
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

@@ -111,7 +111,7 @@ textarea {
 }
 
 #appTitle {
-    -webkit-transition: width 2s;
+    -webkit-transition: transform 2s;
     transition: transform 2s;
 }
 
